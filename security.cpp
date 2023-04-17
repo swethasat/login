@@ -2,9 +2,11 @@
 #include<fstream>
 #include<sstream>
 #include<string>
+
 using namespace std;
 
-int main (){
+int main ()
+{
  int a, i=0;
  string text, old, password1, password2, pass, name, password0, age, user, word, word1;
  string creds[2], cp[2];
@@ -20,7 +22,8 @@ int main (){
     cout<<endl<<endl;
     cout<<"ENTER YOUR CHOICE:-";
     cin>>a;
-    switch(a){
+    switch(a)
+    {
         case 1:{
             cout<<"___________________________"<<endl<<endl;
             cout<<"|--------REGISTER---------|"<<endl;
@@ -35,7 +38,7 @@ int main (){
             of1.open("file.txt");
             if(of1.is_open()){
                 of1<<name<<"\n";
-                of1<<password0<<"\n";
+                of1<<password0;
                 cout<<"Registration sucessfull"<<endl; 
             }
 
@@ -53,7 +56,8 @@ int main (){
             cout<<"Enter password:- ";
             cin>>pass;
             if(of2.is_open()){
-                while(!of2.eof()){
+                while(!of2.eof())
+                {
                     while(getline(of2, text)){
                         istringstream iss(text);
                         iss>>word;
@@ -84,16 +88,19 @@ int main (){
         }
         case 3:{
             i=0;
-            cout<<"___________________________"<<endl<<endl;
+           
             cout<<"|----CHANGE PASSSWORD-----|"<<endl;
-            cout<<"|_________________________|"<<endl<<endl;
+           
             ifstream of0;
             of0.open("file.txt");
             cout<<"Enter the  old password:- ";
             cin>>old;
-            if (of0.is_open()){
-                while(of0.eof()){
-                    while(getline(of0, text)){
+            if (of0.is_open())
+            {
+                while(!of0.eof())
+                {
+                    while(getline(of0, text))
+                    {
                         istringstream iss(text);
                         iss>>word1;
                         cp[i]=word1;
@@ -104,31 +111,35 @@ int main (){
                         {
                             of0.close();
                             ofstream of1;
-                            if (of1.is_open()){
+                            of1.open("file.txt");
+                            if (of1.is_open())
+                            {
                                 cout<<"Enter new password:- ";
                                 cin>>password1;
                                 cout<<"Enter your password again:- ";
                                 cin>>password2;
 
-                                if(password1==password2){
+                                if(password1==password2)
+                                {
                                     of1<<cp[0]<<"\n";
                                     of1<<password1;
                                     cout<<"Password changed sucessfully"<<endl;
 
                                 }
                                 else{
-                                    of1<<cp[0]<<"\n";
+                                    of1<<cp[0]<<"\n"; 
                                     of1<<old;
                                     cout<<"Password do not match"<<endl;
                                     
                                 }
 
                             }
+                        }
                             else{
                                 cout<<"Please enter a valid password"<<endl;
-                                break;
-                            }
-                        }
+                              }  break;
+                            
+                        
                 }
             }
             break;
@@ -138,7 +149,10 @@ int main (){
             break;
         }
         default:
+        {
         cout<<"Enter a valid choice ";
+       
+        }
 
         
     }
